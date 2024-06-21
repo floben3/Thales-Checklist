@@ -30,7 +30,7 @@ Objectifs
 
 ## Avantages
 
-- Favoriser la collaboration : Faciliter la communication et le partage de connaissances entre les équipes
-- Optimiser les processus de test : Améliorer l'efficacité des procédures de test
-- Améliorer l’efficacité opérationnelle : Réduire les coûts et planifier les tâches de manière plus efficiente
+- **Favoriser la collaboration** : Faciliter la communication et le partage de connaissances entre les équipes
+- **Optimiser les processus de test** : Améliorer l'efficacité des procédures de test
+- **Améliorer l’efficacité opérationnelle** : Réduire les coûts et planifier les tâches de manière plus efficiente
 
