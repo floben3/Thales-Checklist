@@ -1,0 +1,825 @@
+/* Custom variable definitions */
+:root {
+    --thales-header: #151930;  /* Header background color */
+    --thales-gradient-1: #151930;  /* Gradient 1 */
+    --thales-gradient-2: #082C46;  /* Gradient 2 */
+    --thales-gradient-3: #073D59;  /* Gradient 3 */
+    --thales-gradient-3-light: rgb(7, 61, 89, 0.4);  /* Gradient 3 with transparency */
+    --thales-gradient-3-light-hex: #073d5966;  /* Gradient 3 with transparency in hex */
+    --thales-color: #00abc8;  /* Main color */
+}
+
+/* Styles for the page body */
+body {
+    margin: 0%;  /* No margin */
+    background-color: var(--thales-gradient-3-light);  /* Use gradient 3 with transparency as background color */
+    font-family: Open Sans, sans-serif;  /* Font family */
+    box-sizing: border-box;  /* Border box model */
+    min-height: 100%;  /* Minimum height 100% of window */
+    display: flex;  /* Use flexbox for layout */
+    flex-direction: column;  /* Content arranged in column */
+}
+
+/* Styles for the header */
+header {
+    background-color: var(--thales-header);  /* Use defined header color */
+    color: #fff;  /* White text */
+    display: flex;  /* Use flexbox for layout */
+    align-items: center;  /* Center align items vertically */
+    height: 60px;  /* Fixed height */
+}
+
+/* Styles for the image within header */
+header img {
+    width: 120px;  /* Image width */
+    height: 60px;  /* Image height */
+    margin-left: 20px;  /* Left margin */
+    margin-right: 50px;  /* Right margin */
+}
+
+/* Styles for the title within header */
+header h1 {
+    width: 170px;  /* Fixed title width */
+    font-size: large;  /* Large font size */
+    color: var(--thales-color);  /* Use main color */
+}
+
+/* Styles for the title when hovered */
+header h1:hover {
+    text-decoration: underline;  /* Underline text */
+    text-underline-offset: 3px;  /* Underline offset */
+    opacity: 0.8;  /* Reduced opacity */
+    transition: opacity 0.75s, text-decoration 0.75s;  /* Animated transition */
+}
+
+/* Styles for navigation within header */
+header nav {
+    width: 100%;  /* Full width */
+}
+
+/* Styles for unordered list within header */
+header ul {
+    display: flex;  /* Use flexbox for layout */
+    flex-direction: row;  /* Content arranged in row */
+    justify-content: space-between;  /* Equal spacing between items */
+    margin-left: 2%;  /* Left margin */
+    margin-right: 2%;  /* Right margin */
+}
+
+/* Styles for list items within header */
+header ul li {
+    list-style-type: none;  /* No bullet style */
+}
+
+/* Styles for links within header */
+header a {
+    font-size: .875rem;  /* Reduced font size */
+    color: #fff;  /* White text */
+    text-decoration: none;  /* No link decoration */
+}
+
+/* Styles for current or hovered page */
+.current-page, .page:hover {
+    color: var(--thales-color);  /* Use main color */
+    text-decoration: underline;  /* Underline text */
+    text-underline-offset: 3px;  /* Underline offset */
+    transition: color 0.75s, text-decoration 0.75s;  /* Animated transition */
+}
+
+/* Styles for specific element with ID "uca" */
+#uca {
+    background-color: #fff;  /* White background */
+    color: black;  /* Black text */
+    height: 64px;  /* Fixed height */
+    width: 150px;  /* Fixed width */
+    margin: 0;  /* No margin */
+}
+
+/* Styles for content sections */
+section {
+    padding-left: 5%;  /* Left padding */
+    padding-right: 5%;  /* Right padding */
+}
+
+/* Styles for elements with classes "welcome" or "login" */
+.welcome, .login {
+    position: absolute;  /* Absolute position */
+    top: 50%;  /* Center vertically */
+    left: 50%;  /* Center horizontally */
+    transform: translate(-50%, -50%);  /* Negative half offset to center */
+    text-align: center;  /* Center align text */
+    padding: 2%;  /* Inner padding */
+    color: #fff;  /* White text */
+    border: 5px solid var(--thales-gradient-2);  /* Solid border with gradient 2 */
+    background-color: var(--thales-gradient-3);  /* Use gradient 3 as background color */
+    border-radius: 10px;  /* Rounded corners */
+}
+
+/* Styles for class ".login" */
+.login {
+    padding: 4%;  /* Inner padding */
+}
+
+/* Styles for titles within classes ".welcome" and ".login" */
+.welcome h2, .welcome h3, .login h2, .login h3 {
+    color: var(--thales-color);  /* Text color defined by main color */
+}
+
+/* Styles for unordered lists within class ".welcome" */
+.welcome ul {
+    margin-top: 10%;  /* Top margin 10% */
+    text-align: left;  /* Left align text */
+}
+
+/* Styles for list items within class ".welcome" */
+.welcome li {
+    margin-left: 10%;  /* Left margin 10% */
+    padding: 1%;  /* Inner padding */
+}
+
+/* Styles for buttons within classes ".welcome" and ".login" */
+.welcome button, .login button {
+    margin-top: 50px;  /* Top margin 50px */
+    background-color: var(--thales-color);  /* Background color defined by main color */
+    font-size: 100%;  /* Font size 100% */
+    min-height: 50px;  /* Minimum height 50px */
+    min-width: 200px;  /* Minimum width 200px */
+}
+
+/* Styles for input rows within class ".login" */
+.login .input-line {
+    margin-top: 10%;  /* Top margin 10% */
+    display: flex;  /* Use flexbox for layout */
+    flex-direction: row;  /* Content arranged in row */
+    width: 110%;  /* Width 110% to fit */
+}
+
+/* Styles for input fields within class ".login input" */
+.login input {
+    margin-left: 3%;  /* Left margin 3% */
+    background-color: #fff;  /* White background */
+    border: 1px solid var(--thales-gradient-2);  /* Solid border with gradient 2 */
+    border-radius: 10px;  /* Rounded corners */
+    height: 20px;  /* Height 20px */
+}
+
+/* Styles for selection forms within classes ".selection-form" and ".create-user-form" */
+.selection-form, .create-user-form {
+    display: flex;  /* Use flexbox for layout */
+    flex-direction: column;  /* Content arranged in column */
+    justify-content: space-between;  /* Equal spacing between items */
+    align-items: center;  /* Center align items */
+    border-top: 5px solid var(--thales-gradient-3);  /* Top border with gradient 3 */
+    border-bottom: 5px solid var(--thales-gradient-3);  /* Bottom border with gradient 3 */
+    width: 100%;  /* Full width */
+}
+
+/* Styles specific to class ".create-user-form" */
+.create-user-form {
+    flex-direction: row;  /* Content arranged in row */
+}
+
+/* Styles for class ".gestion" */
+.gestion {
+    display: flex;  /* Use flexbox for layout */
+    justify-content: space-between;  /* Equal spacing between items */
+    align-items: center;  /* Center align items */
+    width: 100%;  /* Full width */
+}
+
+/* Styles for multiple specific selections */
+.programs-selection, .new-programs-selection, .popup-programs-selection, .phases-and-order-selection,
+.phase-selection, .phaseOne-selection, .keywordsOne-selection ,.keywords-selection, .write-goodpractice, .users-order-selection,
+.password-update-selection, .create-user-selection, .log-selection, .create-user, .reset-user-password {
+    margin: 1%;  /* 1% margin on all sides */
+    padding-left: 10px;  /* Left padding of 10px */
+    border: 1px solid var(--thales-gradient-2);  /* Solid border with gradient 2 */
+    width: 100%;  /* Full width */
+    background-color: var(--thales-gradient-3);  /* Background color defined by gradient 3 */
+    border-radius: 5px;  /* Rounded corners */
+    height: 150px;  /* Fixed height of 150px */
+    color: #fff;  /* White text */
+}
+
+/* Styles specific to ".users-order-selection", ".password-update-selection", ".create-user-selection", ".log-selection" with different height */
+.users-order-selection, .password-update-selection, .create-user-selection, .log-selection {
+    height: 180px;  /* Fixed height of 180px */
+}
+
+/* Styles for elements ".create-user" and ".reset-user-password" with different height */
+.create-user, .reset-user-password {
+    height: 100%;  /* Height 100% */
+}
+
+/* Styles for elements ".create-user" with a different margin bottom */
+.reset-user-password {
+    margin-bottom: 10px; /* Bottom margin of 10px */
+}
+
+/* Styles specific to certain selections with different widths */
+.users-order-selection, .create-user-selection, .log-selection {
+    width: 25%;  /* Width of 25% */
+}
+
+/* Styles for ".password-update-selection" with a different width */
+.password-update-selection {
+    width: 50%;  /* Width of 50% */
+}
+
+/* Specific styles for ".popup-programs-selection" with automatic width and bottom margin */
+.popup-programs-selection {
+    width: auto;  /* Automatic width */
+    margin-bottom: 10px;  /* Bottom margin of 10px */
+}
+
+/* Specific styles for ".programs-selection" inside "#goodpractice-creation-form" */
+#goodpractice-creation-form .programs-selection {
+    width: 33%;  /* Width of 33% */
+}
+
+/* Styles for the form selection phase within the good practice creation form */
+#goodpractice-creation-form .phase-selection {
+    width: 17%;  /* Set width to 17% */
+}
+
+/* Styles for the keywords selection area within the good practice creation form */
+#goodpractice-creation-form .new-programs-selection, #goodpractice-creation-form .keywords-selection {
+    width: 20%;  /* Set width to 20% */
+}
+
+/* Styles for the form selection phase within the good practice creation form */
+#goodpractice-creation-form .phaseOne-selection {
+    width: 30%;  /* Set width to 30% */
+}
+
+#goodpractice-creation-form .keywordsOne-selection {
+    width: 33%;  /* Set width to 33% */
+}
+
+/* Styles for the write good practice section */
+.write-goodpractice {
+    height: 300px;  /* Set height to 300px */
+    display: flex;  /* Use flexbox for layout */
+    flex-direction: column;  /* Arrange content in a column */
+    align-items: center;  /* Center align items */
+    padding: 2%;  /* Set padding to 2% */
+}
+
+/* Styles for text area within the write good practice section */
+.write-goodpractice textarea {
+    height: 230px;  /* Set initial height to 230px */
+    min-height: 230px;  /* Minimum height of 230px */
+    width: 80%;  /* Set initial width to 80% */
+    min-width: 50%;  /* Minimum width of 50% */
+    max-width: 80%;  /* Maximum width of 80% */
+    font-size: larger;  /* Larger font size */
+    border: 2px solid var(--thales-color);  /* Solid border with thales color */
+    background-color: #fff;  /* White background */
+    opacity: 0.9;  /* Initial opacity */
+}
+
+/* Styles for focused state of text area within write good practice section */
+.write-goodpractice textarea:focus {
+    outline: none;  /* Remove outline on focus */
+    opacity: 1;  /* Full opacity on focus */
+    transition: opacity 0.75s;  /* Smooth opacity transition */
+}
+
+/* Styles for headings across various sections */
+.programs-selection h3, .new-programs-selection h3, .popup-programs-selection h4, .phases-and-order-selection h3, 
+.phase-selection h3, .phaseOne-selection h3, .keywordsOne-selection h3, .keywords-selection h3, .write-goodpractice h3,
+.users-order-selection h3, .password-update-selection h3, .create-user-selection h3, .log-selection h3,
+.create-user h3, .create-user h4, .reset-user-password h4 {
+    color: var(--thales-color);  /* Set text color using thales color variable */
+    margin-bottom: 10px;  /* Bottom margin of 10px */
+    margin-top: 10px;  /* Top margin of 10px */
+}
+
+/* Additional margin for specific headings */
+.create-user h3, .create-user h4, .reset-user-password h4, .write-goodpractice h3 {
+    margin-bottom: 20px;  /* Bottom margin of 20px */
+}
+
+/* Specific margin for create user h4 */
+.create-user h4 {
+    margin-top: 30px;  /* Top margin of 30px */
+}
+
+/* Styles for paragraphs within keywords selection */
+.keywordsOne-selection p, .keywords-selection p {
+    height: 40px;  /* Fixed height of 40px */
+    flex-wrap: wrap;  /* Wrap content within flex container */
+    overflow-y: scroll;  /* Enable vertical scrolling */
+    color: red;  /* Red text color */
+}
+
+/* Styles for paragraphs within password update selection */
+.password-update-selection p {
+    font-style: italic;  /* Italic font style */
+    margin: 0%;  /* No margin */
+    margin-bottom: 3px;  /* Bottom margin of 3px */
+}
+
+/* Styles for flex containers for checkboxes, radios, and password input areas */
+.checkbox-area, .radio-area, .popup-checkbox-area, .password-input-area {
+    width: 100%;  /* Full width */
+    display: flex;  /* Use flexbox */
+    flex-wrap: wrap;  /* Wrap content */
+    gap: 10px;  /* Gap between items of 10px */
+    max-height: 100px;  /* Maximum height of 100px */
+    overflow-y: scroll;  /* Enable vertical scrolling */
+}
+
+/* Specific styles for radio area within users order selection */
+.users-order-selection .radio-area, .user-create-input-area {
+    display: block;  /* Display as block */
+}
+
+/* Styles for radio line within users order selection */
+.users-order-selection .radio-line {
+    margin-bottom: 10px;  /* Bottom margin of 10px */
+}
+
+/* Styles for input lines within create user and reset user password sections */
+.create-user-input-line input, .reset-user-password-input-line input {
+    height: 22px;  /* Fixed height of 22px */
+    margin-bottom: 20px;  /* Bottom margin of 20px */
+    min-width: 200px;  /* Minimum width of 200px */
+}
+
+/* Styles for checkbox, popup checkbox, and labels within specific selections */
+.checkbox-line, .popup-checkbox-line, .password-input-line  {
+    width: calc(25% - 10px);  /* Calculated width minus 10px */
+    box-sizing: border-box;  /* Include border and padding in the width */
+    margin-bottom: 10px;  /* Bottom margin of 10px */
+    display: flex;  /* Use flexbox */
+    align-items: center;  /* Align items center */
+}
+
+/* Styles for popup checkbox and password input lines */
+.popup-checkbox-line, .password-input-line {
+    width: calc(50% - 10px);  /* Calculated width minus 10px */
+}
+
+/* Styles specifically for password input line */
+.password-input-line {
+    margin-bottom: 0%;  /* No bottom margin */
+}
+
+/* Styles for specific input fields within password update selection and log date */
+.password-input-line input {
+    width: 20%;  /* Width of 20% */
+}
+
+#log-date-day, #log-date-year {
+    width: 40%;  /* Width of 40% */
+}
+
+/* Styles for checkboxes within programs selection, popup programs selection, phases and order selection, phase selection, password input line, create user selection, and log selection */
+.programs-selection .checkbox, .popup-programs-selection .popup-programs-checkbox, .phases-and-order-selection .checkbox,
+.phase-selection label, .phaseOne-selection label, .password-input-line label, .create-user-selection label, .log-selection label {
+    margin-right: 5px;  /* Right margin of 5px */
+}
+
+/* Styles for labels within programs selection, popup programs selection, phases and order selection, users order selection, create user selection, log selection, create user, and reset user password */
+.programs-selection label, .popup-programs-selection label , .phases-and-order-selection label, .users-order-selection label,
+.create-user-selection label, .log-selection label, .create-user label, .reset-user-password label {
+    color: #fff;  /* White text color */
+    cursor: pointer;  /* Pointer cursor */
+}
+
+/* Styles for generic labels */
+label {
+    font-weight: bold;  /* Bold font weight */
+}
+
+/* Styles for search input */
+.search-input {
+    margin-top: 10px;  /* Top margin of 10px */
+    height: 30px;  /* Fixed height of 30px */
+    width: 92%;  /* Width of 92% */
+}
+
+/* Styles for selection and create user buttons */
+.selection-button, .create-user-button {
+    display: flex;  /* Use flexbox */
+    justify-content: space-between;  /* Space between items */
+    align-items: center;  /* Align items center */
+    margin-right: auto;  /* Right margin auto */
+    margin-left: auto;  /* Left margin auto */
+    width: 50%;  /* Width of 50% */
+    height: 50px;  /* Fixed height of 50px */
+    padding: 1%;  /* Padding of 1% */
+}
+
+/* Styles for specific selection and password update buttons */
+.users-order-selection .selection-button, .password-update-selection .selection-button {
+    height: 35px;  /* Fixed height of 35px */
+    align-items: baseline;  /* Align items baseline */
+}
+
+/* Base styles for all buttons */
+button {
+    background-color: var(--thales-gradient-3);  /* Background color from thales gradient 3 */
+    color: #fff;  /* White text color */
+    padding: 8px 12px;  /* Padding of 8px top/bottom and 12px left/right */
+    border: none;  /* No border */
+    border-radius: 5px;  /* Border radius of 5px */
+    cursor: pointer;  /* Pointer cursor */
+    opacity: 0.8;  /* Opacity of 0.8 */
+    margin: 1px;  /* Margin of 1px */
+}
+
+/* Styles for buttons within selection buttons */
+.selection-button button {
+    height: 100%;  /* Height of 100% */
+    width: 100%;  /* Width of 100% */
+    margin: 5%;  /* Margin of 5% */
+}
+
+/* Styles for create good practice selection button area */
+#create-goodpractice-selection-button {
+    width: 30%;  /* Width of 60% */
+}
+
+/* Styles for create good practice selection button */
+#create-goodpractice-selection-button button {
+    width: 40%;  /* Width of 40% */
+}
+
+#field-button {
+    width: 25%;
+}
+
+#field-button button {
+    width: 100%;
+}
+
+/* Styles for buttons within specific selections */
+.users-order-selection button,
+.password-update-selection button,
+.create-user-selection button,
+.log-selection button,
+.create-user-button button {
+    background-color: var(--thales-color);  /* Background color using thales color variable */
+    margin: 0%;  /* No margin */
+    margin-left: auto;  /* Left margin auto */
+    margin-right: auto;  /* Right margin auto */
+    width: 200px;  /* Fixed width of 200px */
+    opacity: 0.9;  /* Opacity of 0.9 */
+    font-size: 100%;  /* Font size of 100% */
+}
+
+/* Additional margin top for buttons within users order selection */
+.users-order-selection button {
+    margin-top: 25px;  /* Top margin of 25px */
+}
+
+/* Additional margin top for buttons within password update selection */
+.password-update-selection button {
+    margin-top: 10px;  /* Top margin of 10px */
+}
+
+/* Additional margin top for buttons within create user and log selection */
+.create-user-selection button,
+.log-selection button {
+    margin-top: 60px;  /* Top margin of 60px */
+}
+
+/* Styles for buttons within create user button */
+.create-user-button button {
+    width: 300px;  /* Width of 300px */
+    height: 60px;  /* Height of 60px */
+}
+
+/* Hover effect for all buttons */
+button:hover {
+    opacity: 1;  /* Full opacity on hover */
+    transition: opacity 0.75s;  /* Smooth opacity transition */
+}
+
+/* Styles for selection button within good practices selection */
+.goodpractices-selection .selection-button {
+    padding: 0%;  /* No padding */
+    padding-top: 1%;  /* Top padding of 1% */
+    padding-bottom: 1%;  /* Bottom padding of 1% */
+    width: 100%;  /* Width of 100% */
+    height: 60px;  /* Height of 60px */
+}
+
+/* Styles for buttons within .selection-button under .goodpractices-selection */
+.goodpractices-selection .selection-button button {
+    width: 15%;  /* Width of 15% */
+    margin: 0%;  /* No margin */
+    margin-left: 0%;  /* Left margin of 0% */
+    margin-right: 0%;  /* Right margin of 0% */
+}
+
+/* Styling for heading tags h2, h3, h4 */
+h2, h3, h4 {
+    color: var(--thales-gradient-3);  /* Color using thales gradient 3 variable */
+}
+
+/* Styling for elements with class .darkred */
+.darkred {
+    background-color: darkred;  /* Dark red background color */
+    color: #fff;  /* White text color */
+    padding: 2px;  /* Padding of 2px */
+}
+
+/* Styling for list items within ordered lists */
+ol li {
+    margin-bottom: 5px;  /* Bottom margin of 5px */
+}
+
+/* Styles for table container */
+.table-container {
+    overflow: hidden;  /* Hide overflow */
+    border: 1px solid var(--thales-gradient-2);  /* Border with thales gradient 2 color */
+    border-radius: 10px;  /* Border radius of 10px */
+}
+
+/* Styles for tables */
+table {
+    width: 1800px;  /* Fixed width of 1800px */
+    border-collapse: collapse;  /* Collapse borders */
+    overflow: hidden;  /* Hide overflow */
+    display: grid;  /* Use grid display */
+    grid-template-rows: auto 1fr;  /* Grid template rows */
+}
+
+/* Styling for specific row with id self-admin */
+tr#self-admin {
+    height: 50px;  /* Height of 50px */
+    background-color: var(--thales-color);  /* Background color using thales color variable */
+}
+
+/* Styling for rows with class .blocked */
+tr.blocked {
+    color: #c80815;  /* Reddish text color */
+}
+
+/* Styling for table header cells and data cells */
+th, td {
+    border: 1px solid var(--thales-gradient-1);  /* Border with thales gradient 1 color */
+    padding: 10px;  /* Padding of 10px */
+    text-align: left;  /* Left-aligned text */
+}
+
+/* Styles for specific columns */
+.programs-column,
+.keywords-column {
+    width: 290px;  /* Width of 290px */
+}
+
+.phase-column {
+    width: 100px;  /* Width of 100px */
+}
+
+.item-column {
+    width: 800px;  /* Width of 800px */
+}
+
+.actions-column {
+    width: 140px;  /* Width of 140px */
+}
+
+.username-column,
+.firstname-column,
+.lastname-column {
+    width: 400px;  /* Width of 400px */
+}
+
+.profile-column {
+    width: 110px;  /* Width of 110px */
+}
+
+.attempts-column {
+    width: 250px;  /* Width of 250px */
+}
+
+/* Additional styling for .username-column */
+.username-column {
+    width: 300px;  /* Width of 300px */
+}
+
+/* Styles for table header (thead) */
+thead {
+    background-color: var(--thales-gradient-2);  /* Background color using thales gradient 2 */
+    color: #fff;  /* White text color */
+}
+
+/* Styles for table body (tbody) */
+tbody {
+    max-height: 340px;  /* Maximum height of 370px */
+    overflow-y: scroll;  /* Scrollable overflow-y */
+}
+
+/* Additional styling for #users-tbody */
+#users-tbody {
+    max-height: 400px;  /* Maximum height of 430px */
+}
+
+/* Styling for even rows within tbody */
+tbody tr:nth-child(even) {
+    background-color: var(--thales-gradient-3-light);  /* Background color using lighter thales gradient 3 */
+}
+
+/* Styles for action button container */
+.action-btn-container {
+    display: flex;  /* Flex display */
+    justify-content: center;  /* Centered content */
+}
+
+/* Styles for action buttons */
+.action-btn {
+    background-color: var(--thales-gradient-3);  /* Background color using thales gradient 3 */
+    color: #fff;  /* White text color */
+    padding: 8px 12px;  /* Padding of 8px top/bottom, 12px left/right */
+    border: none;  /* No border */
+    border-radius: 5px;  /* Border radius of 5px */
+    cursor: pointer;  /* Pointer cursor */
+    opacity: 0.8;  /* Opacity of 0.8 */
+    width: 100%;  /* Width of 100% */
+}
+
+/* Hover effect for action buttons */
+.action-btn:hover {
+    opacity: 1;  /* Full opacity on hover */
+    transition: 0.75s;  /* Smooth transition over 0.75s */
+}
+
+/* Styles for warning button with class .btn-warning */
+.btn-warning {
+    background-color: darkred;  /* Dark red background color */
+    color: #fff;  /* White text color */
+    padding: 12px 20px;  /* Padding of 12px top/bottom, 20px left/right */
+    border: none;  /* No border */
+    cursor: pointer;  /* Pointer cursor */
+    width: 100%;  /* Width of 100% */
+    margin-bottom: 10px;  /* Bottom margin of 10px */
+    opacity: 0.8;  /* Opacity of 0.8 */
+}
+
+/* Hover effect for warning button */
+.btn-warning:hover {
+    opacity: 1;  /* Full opacity on hover */
+    transition: 0.75s;  /* Smooth transition over 0.75s */
+}
+
+/* Styles for form pop-up */
+.form-popup {
+    display: none;  /* Hidden by default */
+    position: fixed;  /* Fixed position */
+    left: 50%;  /* Center horizontally */
+    top: 50%;  /* Center vertically */
+    transform: translate(-50%, -50%);  /* Center pop-up */
+    border: 1px solid var(--thales-gradient-3);  /* Border with thales gradient 3 */
+    padding: 20px;  /* Padding of 20px */
+    background-color: #fff;  /* White background color */
+    z-index: 999;  /* Higher z-index */
+    color: var(--thales-gradient-1);  /* Text color using thales gradient 1 */
+    width: 20%;  /* Width of 20% */
+}
+
+/* Styles for list items within .form-popup */
+.form-popup li {
+    margin-bottom: 10px;  /* Bottom margin of 10px */
+}
+
+/* Styling for input fields */
+input {
+    border: 2px solid var(--thales-color);  /* Border with thales color */
+    background-color: #fff;  /* White background color */
+    opacity: 0.9;  /* Opacity of 0.9 */
+    border-radius: 5px;  /* Border radius of 5px */
+}
+
+/* Focus styles for input fields */
+input:focus {
+    outline: none;  /* No outline on focus */
+    opacity: 1;  /* Full opacity on focus */
+    transition: opacity 0.75s;  /* Smooth transition over 0.75s */
+}
+
+/* Styles for buttons within .form-container */
+.form-container .btn {
+    background-color: var(--thales-gradient-3);  /* Background color using thales gradient 3 */
+    color: #fff;  /* White text color */
+    padding: 12px 20px;  /* Padding of 12px top/bottom, 20px left/right */
+    border: none;  /* No border */
+    cursor: pointer;  /* Pointer cursor */
+    width: 100%;  /* Width of 100% */
+    margin-bottom: 10px;  /* Bottom margin of 10px */
+    opacity: 0.8;  /* Opacity of 0.8 */
+}
+
+/* Hover effect for buttons within .form-container */
+.form-container .btn:hover {
+    opacity: 1;  /* Full opacity on hover */
+    transition: 0.75s;  /* Smooth transition over 0.75s */
+}
+
+/* Styling for .log container */
+.log {
+    display: flex;  /* Flex display */
+    flex-direction: column;  /* Column direction */
+    align-items: center;  /* Centered alignment */
+    overflow-y: scroll;  /* Scrollable overflow-y */
+    background-color: var(--thales-gradient-3);  /* Background color using thales gradient 3 */
+    border: 1px solid var(--thales-gradient-1);  /* Border with thales gradient 1 */
+    border-radius: 10px;  /* Border radius of 10px */
+    height: 310px;  /* Height of 350px */
+    padding: 2%;  /* Padding of 2% */
+    font-size: large;  /* Larger font size */
+}
+
+/* Styling for .log-selection within .log */
+.log-selection {
+    height: 150px;  /* Height of 150px */
+}
+
+/* Styling for #to-log */
+#to-log {
+    height: 180px;  /* Height of 180px */
+}
+
+/* Styling for elements with ids log-date-day, log-date-month, log-date-year */
+#log-date-day, #log-date-month, #log-date-year {
+    margin-bottom: 10px;  /* Bottom margin of 10px */
+}
+
+/* Styling for elements with ids log-date-selection-sa, log-evenement-type-selection-sa, log-user-profile-selection-sa, log-search-selection-sa */
+#log-date-selection-sa, #log-evenement-type-selection-sa, #log-user-profile-selection-sa, #log-search-selection-sa {
+    width: 25%;  /* Width of 25% */
+}
+
+/* Styling for elements with ids log-date-selection-a, log-evenement-type-selection-a, log-search-selection-a */
+#log-date-selection-a, #log-evenement-type-selection-a, #log-search-selection-a {
+    width: 33%;  /* Width of 33% */
+}
+
+/* Styling for elements with class checkbox-line under log-date-selection-a, log-date-selection-sa, log-evenement-type-selection-a, log-evenement-type-selection-sa */
+#log-date-selection-a .checkbox-line,
+.log-date-selection-sa .checkbox-line,
+#log-evenement-type-selection-a .checkbox-line,
+.log-evenement-type-selection-sa .checkbox-line,
+#log-evenement-type-selection-a .checkbox-line,
+#log-evenement-type-selection-sa .checkbox-line {
+    width: 200px;  /* Width of 200px */
+}
+
+/* Styling for elements with class checkbox-line under log-user-profile-selection-sa */
+#log-user-profile-selection-sa .checkbox-line {
+    width: 250px;  /* Width of 250px */
+}
+
+/* Styling for elements with class information */
+.information {
+    color: #1e90ff;  /* Blueish text color */
+}
+
+/* Styling for elements with class warning */
+.warning {
+    color: #eee600;  /* Yellowish text color */
+}
+
+/* Styling for elements with class alarm */
+.alarm {
+    color: red;  /* Red text color */
+}
+
+/* Styling for container with id programs-selection-title-and-button */
+#programs-selection-title-and-button {
+    display: flex;  /* Flex display */
+    flex-direction: row;  /* Row direction */
+    justify-content: space-between;  /* Space between items */
+}
+
+/* Styling for buttons within programs-selection-title-and-button */
+#programs-selection-title-and-button button {
+    background-color: var(--thales-color);  /* Background color using thales color variable */
+    opacity: 0.9;  /* Opacity of 0.9 */
+    padding: 1%;  /* Padding of 1% */
+    margin: 1%;  /* Margin of 1% */
+}
+
+/* Hover effect for buttons within programs-selection-title-and-button */
+#programs-selection-title-and-button button:hover {
+    opacity: 1;  /* Full opacity on hover */
+    transition: opacity 0.75s;  /* Smooth transition over 0.75s */
+}
+
+/* Styling for footer */
+footer {
+    position: fixed;  /* Fixed position */
+    bottom: 0;  /* Stick to the bottom */
+    width: 100%;  /* Full width */
+    height: 40px;  /* Height of 40px */
+    background-color: var(--thales-header);  /* Background color using thales header color */
+    color: #fff;  /* White text color */
+    font-size: small;  /* Small font size */
+    display: flex;  /* Flex display */
+    justify-content: space-around;  /* Space around items */
+    margin-top: 1%;  /* Top margin of 1% */
+}
