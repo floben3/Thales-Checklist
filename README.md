@@ -15,7 +15,7 @@ Objectifs
 ## Fonctionnalités
 
 1) **Accès Sécurisé** :
-    - Système de connexion sécurisé avec rôles d’utilisateur (Super Administrateur, Administrateurs)
+    - Système de connexion sécurisé avec rôles d’utilisateur (Super Administrateur, Administrateurs, Opérateurs)
     - Gestion des accès et configuration des paramètres de l’application
 
 2) **Gestion des Bonnes Pratiques** :
