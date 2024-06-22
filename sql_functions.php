@@ -408,56 +408,126 @@
         return $keywords;
     }
 
-/**
- * Delete a program name from the PROGRAM table, or a keyword from the KEYWORD table.
- * 
- * @param string $fieldType Field name
- * @param string $value Value to delete
- * @param string $profile User profile
- */
-function DeleteField(string $fieldType, string $value, string $profile): void
-{
-    global $db;
+    /**
+     * Delete a program name from the PROGRAM table, or a keyword from the KEYWORD table.
+     * 
+     * @param string $fieldType Field name
+     * @param string $value Value to delete
+     * @param string $profile User profile
+     * @return int Status code indicating the result of the operation
+     * @throws Exception If any database error occurs
+     */
+    function DeleteField(string $fieldType, string $value, string $profile): int
+    {
+        global $db;
 
-    if ($profile === 'admin' || $profile === 'superadmin') {
-        if ($fieldType === 'program_name') {
-            $sql = "SELECT program_id FROM PROGRAM WHERE program_name = :valueToDelete";
-            $marker = array('valueToDelete' => $value);
-            $stmt = $db->prepare($sql);
-            $stmt->execute($marker);
-            $result = $stmt->fetch(PDO::FETCH_ASSOC);
-            $stmt->closeCursor();
+        $SUCCESS_PROGRAM_DELETED = 2;
+        $SUCCESS_KEYWORD_DELETED = 3;
+        $FAILURE_NO_PROGRAM_FOUND = 0;
+        $FAILURE_NO_KEYWORD_FOUND = 1;
+        $FAILURE_INVALID_FIELD_TYPE = 4;
+        $FAILURE_UNAUTHORIZED = 5;
 
-            if ($result) {
-                $primaryKey = $result['program_id'];
-                $sql = "DELETE FROM GOODPRACTICE_PROGRAM WHERE program_id = :primaryKey;
-                        DELETE FROM PROGRAM WHERE program_id = :primaryKey";
-                $markers = array('primaryKey' => $primaryKey);
-                $stmt = $db->prepare($sql);
-                $stmt->execute($markers);
-                $stmt->closeCursor();
+        if ($profile === 'admin' || $profile === 'superadmin') {
+            try {
+                $db->beginTransaction();
+
+                if ($fieldType === 'program_name') {
+                    $sql = "SELECT program_id FROM PROGRAM WHERE program_name = :valueToDelete";
+                    $stmt = $db->prepare($sql);
+                    $stmt->execute(['valueToDelete' => $value]);
+                    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                    if ($result) {
+                        $primaryKey = $result['program_id'];
+                        $sql = "DELETE FROM GOODPRACTICE_PROGRAM WHERE program_id = :primaryKey";
+                        $stmt = $db->prepare($sql);
+                        $stmt->execute(['primaryKey' => $primaryKey]);
+
+                        $sql = "DELETE FROM PROGRAM WHERE program_id = :primaryKey";
+                        $stmt = $db->prepare($sql);
+                        $stmt->execute(['primaryKey' => $primaryKey]);
+
+                        $db->commit();
+                        return $SUCCESS_PROGRAM_DELETED;
+                    } else {
+                        $db->rollBack();
+                        return $FAILURE_NO_PROGRAM_FOUND;
+                    }
+
+                } elseif ($fieldType === 'onekeyword') {
+                    $sql = "SELECT keyword_id FROM KEYWORD WHERE onekeyword = :valueToDelete";
+                    $stmt = $db->prepare($sql);
+                    $stmt->execute(['valueToDelete' => $value]);
+                    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                    if ($result) {
+                        $primaryKey = $result['keyword_id'];
+
+                        // Get all goodpractice_id associated with this keyword_id
+                        $sql = "SELECT goodpractice_id FROM GOODPRACTICE_KEYWORD WHERE keyword_id = :primaryKey";
+                        $stmt = $db->prepare($sql);
+                        $stmt->execute(['primaryKey' => $primaryKey]);
+                        $goodPracticeIds = $stmt->fetchAll(PDO::FETCH_COLUMN, 0);
+
+                        // Delete entries from GOODPRACTICE_KEYWORD
+                        $sql = "DELETE FROM GOODPRACTICE_KEYWORD WHERE keyword_id = :primaryKey";
+                        $stmt = $db->prepare($sql);
+                        $stmt->execute(['primaryKey' => $primaryKey]);
+
+                        // Delete the keyword
+                        $sql = "DELETE FROM KEYWORD WHERE keyword_id = :primaryKey";
+                        $stmt = $db->prepare($sql);
+                        $stmt->execute(['primaryKey' => $primaryKey]);
+
+                        // Ensure each good practice has at least one keyword
+                        foreach ($goodPracticeIds as $goodPracticeId) {
+                            EnsureGoodPracticeHasKeyword($goodPracticeId);
+                        }
+
+                        $db->commit();
+                        return $SUCCESS_KEYWORD_DELETED;
+                    } else {
+                        $db->rollBack();
+                        return $FAILURE_NO_KEYWORD_FOUND;
+                    }
+                } else {
+                    $db->rollBack();
+                    return $FAILURE_INVALID_FIELD_TYPE;
+                }
+
+            } catch (Exception $e) {
+                $db->rollBack();
+                throw $e;
             }
-        } elseif ($fieldType === 'onekeyword') {
-            $sql = "SELECT keyword_id FROM KEYWORD WHERE onekeyword = :valueToDelete";
-            $marker = array('valueToDelete' => $value);
-            $stmt = $db->prepare($sql);
-            $stmt->execute($marker);
-            $result = $stmt->fetch(PDO::FETCH_ASSOC);
-            $stmt->closeCursor();
-
-            if ($result) {
-                $primaryKey = $result['keyword_id'];
-                $sql = "DELETE FROM GOODPRACTICE_KEYWORD WHERE keyword_id = :primaryKey;
-                        DELETE FROM KEYWORD WHERE keyword_id = :primaryKey";
-                $markers = array('primaryKey' => $primaryKey);
-                $stmt = $db->prepare($sql);
-                $stmt->execute($markers);
-                $stmt->closeCursor();
-            }
+        } else {
+            return $FAILURE_UNAUTHORIZED;
         }
     }
-}
 
+
+    /**
+     * Ensure that a good practice has an associated keyword in the GOODPRACTICE_KEYWORD table.
+     * If the good practice is not associated, add an entry with the good practice primary key
+     * and the primary key 1 of the keywords.
+     * 
+     * @param int $goodPracticeId Primary key of the good practice
+     */
+    function EnsureGoodPracticeHasKeyword(int $goodPracticeId): void
+    {
+        global $db;
+
+        $sql = "SELECT COUNT(*) FROM GOODPRACTICE_KEYWORD WHERE goodpractice_id = :goodPracticeId";
+        $stmt = $db->prepare($sql);
+        $stmt->execute(['goodPracticeId' => $goodPracticeId]);
+        $count = $stmt->fetchColumn();
+
+        if ($count == 0) {
+            $sql = "INSERT INTO GOODPRACTICE_KEYWORD (goodpractice_id, keyword_id) VALUES (:goodPracticeId, 1)";
+            $stmt = $db->prepare($sql);
+            $stmt->execute(['goodPracticeId' => $goodPracticeId]);
+        }
+    }
 
     /**
      * Validates and filters selected keywords against available keywords in the database.

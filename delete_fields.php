@@ -4,7 +4,6 @@
     require_once(__DIR__ . '/functions.php');
     CheckAdminRights();
 
-    // Include header, user management scripts, and footer
     require_once(__DIR__ . '/header.php');
 ?>
 
@@ -25,7 +24,7 @@
 
             <div class="keywordsOne-selection">
                 <h3>Séléction du programme ou du mot-clé à supprimer</h3>
-                <input class='search-input' type="text" name="fieldToDelete" placeholder="Saisir le programme ou le mot-clé">
+                <input class='search-input' type="text" name="fieldToDelete" placeholder="Saisir le programme ou le mot-clé" required>
             </div>
         </div>
 
@@ -36,6 +35,7 @@
 
 <?php require_once(__DIR__ . '/footer.php'); ?>
 
-<?php if (isset($_GET['e'])) : ?>
-    <script>alert('<?= Sanitize(urldecode($_GET['e'])) ?>')</script>
+<?php if (isset($_SESSION['PROGRAM_OR_KEYWORD_DELETE_MESSAGE'])) : ?>
+    <script>alert("<?= Sanitize($_SESSION['PROGRAM_OR_KEYWORD_DELETE_MESSAGE']) ?>")</script>
+    <?php unset($_SESSION['PROGRAM_OR_KEYWORD_DELETE_MESSAGE']); ?>
 <?php endif; ?>
